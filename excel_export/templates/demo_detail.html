@@ -1,0 +1,346 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="form_body" style="margin:20px;">
+    <table class="table">
+        <tr>
+            <td style="float: left"><a href="{% url 'home' %}" class="btn btn-primary" role="button">Back</a></td>
+            <td style="float: right">
+                {% if export_all %}
+            <a href="javascript:void(0)" class="btn btn-primary" role="button"  data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Export..." id="export_all_excel_a" onclick="javascript: ajaxExportExcels('all');">Export All to Excel</a>
+            {% endif %}</td>
+        </tr>
+    </table>
+    </div>
+    <div class="table-responsive">
+	<table class="table table-bordered usr_def_tbl">
+	    <thead class="thead-inverse">
+            <tr style="font-size:14px; text-align: center;">
+              <th> </th>
+              <th>Qty</th>
+              <th>Part Number</th>
+              <th>NonFIO SKU</th>
+              <th>Description</th>
+              <th>Cost</th>
+              <th>Ex.Cost</th>
+              <th>MSRP</th>
+              <th>ex.MSRP</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in smarybuy_list %}
+            
+            <!-- this is SamrtBuy sections -->
+            <tr>
+                <td>Smartbuy</td>
+                <td>{% if  s.smartbuy_qty %}{{ s.smartbuy_qty }}{% endif %} </td>
+                <td>{% if  s.smartbuy_part_number %}{{ s.smartbuy_part_number }}{% endif %} </td>
+               <td>{% if  s.smartbuy_nonfio_sku %}{{ s.smartbuy_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.smartbuy_desc %}{{ s.smartbuy_desc }}{% endif %} </td>
+                <td>{% if  s.smartbuy_cost %}{{ s.smartbuy_cost }}{% endif %} </td>
+                <td>{% if  s.smartbuy_ex_cost %}{{ s.smartbuy_ex_cost }}{% endif %} </td>
+                <td>{% if  s.smartbuy_msrp %}{{ s.smartbuy_msrp }}{% endif %} </td>
+                <td>{% if  s.smartbuy_ex_msrp %}{{ s.smartbuy_ex_msrp }}{% endif %}</td>
+            </tr>
+            
+            <!-- this is Chassis sections -->
+            <tr>
+                <td>Chassis</td>
+                <td>{% if  s.chassis_qty %}{{ s.chassis_qty }}{% endif %} </td>
+                <td>{% if  s.chassis_part_number %}{{ s.chassis_part_number }}{% endif %} </td>
+               <td>{% if  s.chassis_nonfio_sku %}{{ s.chassis_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.chassis_desc %}{{ s.chassis_desc }}{% endif %} </td>
+                <td>{% if  s.chassis_cost %}{{ s.chassis_cost }}{% endif %} </td>
+                <td>{% if  s.chassis_ex_cost %}{{ s.chassis_ex_cost }}{% endif %} </td>
+                <td>{% if  s.chassis_msrp %}{{ s.chassis_msrp }}{% endif %} </td>
+                <td>{% if  s.chassis_ex_msrp %}{{ s.chassis_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is Processor sections -->
+            <tr>
+                <td>Processor</td>
+                <td>{% if  s.processor_qty %}{{ s.processor_qty }}{% endif %} </td>
+                <td>{% if  s.processor_part_number %}{{ s.processor_part_number }}{% endif %} </td>
+               <td>{% if  s.processor_nonfio_sku %}{{ s.processor_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.processor_desc %}{{ s.processor_desc }}{% endif %} </td>
+                <td>{% if  s.processor_cost %}{{ s.processor_cost }}{% endif %} </td>
+                <td>{% if  s.processor_ex_cost %}{{ s.processor_ex_cost }}{% endif %} </td>
+                <td>{% if  s.processor_msrp %}{{ s.processor_msrp }}{% endif %} </td>
+                <td>{% if  s.processor_ex_msrp %}{{ s.processor_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is Heatsink sections -->
+            <tr>
+                <td>Heatsink</td>
+                <td>{% if  s.heatsink_qty %}{{ s.heatsink_qty }}{% endif %} </td>
+                <td>{% if  s.heatsink_part_number %}{{ s.heatsink_part_number }}{% endif %} </td>
+               <td>{% if  s.heatsink_nonfio_sku %}{{ s.heatsink_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.heatsink_desc %}{{ s.heatsink_desc }}{% endif %} </td>
+                <td>{% if  s.heatsink_cost %}{{ s.heatsink_cost }}{% endif %} </td>
+                <td>{% if  s.heatsink_ex_cost %}{{ s.heatsink_ex_cost }}{% endif %} </td>
+                <td>{% if  s.heatsink_msrp %}{{ s.heatsink_msrp }}{% endif %} </td>
+                <td>{% if  s.heatsink_ex_msrp %}{{ s.heatsink_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is Fans sections -->
+            <tr>
+                <td>Fans</td>
+                <td>{% if  s.fans_qty %}{{ s.fans_qty }}{% endif %} </td>
+                <td>{% if  s.fans_part_number %}{{ s.fans_part_number }}{% endif %} </td>
+               <td>{% if  s.fans_nonfio_sku %}{{ s.fans_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.fans_desc %}{{ s.fans_desc }}{% endif %} </td>
+                <td>{% if  s.fans_cost %}{{ s.fans_cost }}{% endif %} </td>
+                <td>{% if  s.fans_ex_cost %}{{ s.fans_ex_cost }}{% endif %} </td>
+                <td>{% if  s.fans_msrp %}{{ s.fans_msrp }}{% endif %} </td>
+                <td>{% if  s.fans_ex_msrp %}{{ s.fans_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is Memory sections -->
+            <tr>
+                <td>Memory</td>
+                <td>{% if  s.memory_qty %}{{ s.memory_qty }}{% endif %} </td>
+                <td>{% if  s.memory_part_number %}{{ s.memory_part_number }}{% endif %} </td>
+               <td>{% if  s.memory_nonfio_sku %}{{ s.memory_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.memory_desc %}{{ s.memory_desc }}{% endif %} </td>
+                <td>{% if  s.memory_cost %}{{ s.memory_cost }}{% endif %} </td>
+                <td>{% if  s.memory_ex_cost %}{{ s.memory_ex_cost }}{% endif %} </td>
+                <td>{% if  s.memory_msrp %}{{ s.memory_msrp }}{% endif %} </td>
+                <td>{% if  s.memory_ex_msrp %}{{ s.memory_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is Storage Controller sections -->
+            <tr>
+                <td>Storage Controller</td>
+                <td>{% if  s.storage_qty %}{{ s.storage_qty }}{% endif %} </td>
+                <td>{% if  s.storage_part_number %}{{ s.storage_part_number }}{% endif %} </td>
+               <td>{% if  s.storage_nonfio_sku %}{{ s.storage_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.storage_desc %}{{ s.storage_desc }}{% endif %} </td>
+                <td>{% if  s.storage_cost %}{{ s.storage_cost }}{% endif %} </td>
+                <td>{% if  s.storage_ex_cost %}{{ s.storage_ex_cost }}{% endif %} </td>
+                <td>{% if  s.storage_msrp %}{{ s.storage_msrp }}{% endif %} </td>
+                <td>{% if  s.storage_ex_msrp %}{{ s.storage_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is Power Supply sections -->
+            <tr>
+                <td>Power Supply</td>
+                <td>{% if  s.power_qty %}{{ s.power_qty }}{% endif %} </td>
+                <td>{% if  s.power_part_number %}{{ s.power_part_number }}{% endif %} </td>
+               <td>{% if  s.power_nonfio_sku %}{{ s.power_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.power_desc %}{{ s.power_desc }}{% endif %} </td>
+                <td>{% if  s.power_cost %}{{ s.power_cost }}{% endif %} </td>
+                <td>{% if  s.power_ex_cost %}{{ s.power_ex_cost }}{% endif %} </td>
+                <td>{% if  s.power_msrp %}{{ s.power_msrp }}{% endif %} </td>
+                <td>{% if  s.power_ex_msrp %}{{ s.power_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is Rail Kit sections -->
+            <tr>
+                <td>Rail Kit</td>
+                <td>{% if  s.rail_kit_qty %}{{ s.rail_kit_qty }}{% endif %} </td>
+                <td>{% if  s.rail_kit_part_number %}{{ s.rail_kit_part_number }}{% endif %} </td>
+               <td>{% if  s.rail_kit_nonfio_sku %}{{ s.rail_kit_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.rail_kit_desc %}{{ s.rail_kit_desc }}{% endif %} </td>
+                <td>{% if  s.rail_kit_cost %}{{ s.rail_kit_cost }}{% endif %} </td>
+                <td>{% if  s.rail_kit_ex_cost %}{{ s.rail_kit_ex_cost }}{% endif %} </td>
+                <td>{% if  s.rail_kit_msrp %}{{ s.rail_kit_msrp }}{% endif %} </td>
+                <td>{% if  s.rail_kit_ex_msrp %}{{ s.rail_kit_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is Heatsink2 sections -->
+            <tr>
+                <td>Heatsink2</td>
+                <td>{% if  s.heatsink2_qty %}{{ s.heatsink2_qty }}{% endif %} </td>
+                <td>{% if  s.heatsink2_part_number %}{{ s.heatsink2_part_number }}{% endif %} </td>
+               <td>{% if  s.heatsink2_nonfio_sku %}{{ s.heatsink2_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.heatsink2_desc %}{{ s.heatsink2_desc }}{% endif %} </td>
+                <td>{% if  s.heatsink2_cost %}{{ s.heatsink2_cost }}{% endif %} </td>
+                <td>{% if  s.heatsink2_ex_cost %}{{ s.heatsink2_ex_cost }}{% endif %} </td>
+                <td>{% if  s.heatsink2_msrp %}{{ s.heatsink2_msrp }}{% endif %} </td>
+                <td>{% if  s.heatsink2_ex_msrp %}{{ s.heatsink2_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is  PCIe Riser sections -->
+            <tr>
+                <td> PCIe Riser</td>
+                <td>{% if  s.pcie_riser_qty %}{{ s.pcie_riser_qty }}{% endif %} </td>
+                <td>{% if  s.pcie_riser_part_number %}{{ s.pcie_riser_part_number }}{% endif %} </td>
+               <td>{% if  s.pcie_riser_nonfio_sku %}{{ s.pcie_riser_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.pcie_riser_desc %}{{ s.pcie_riser_desc }}{% endif %} </td>
+                <td>{% if  s.pcie_riser_cost %}{{ s.pcie_riser_cost }}{% endif %} </td>
+                <td>{% if  s.pcie_riser_ex_cost %}{{ s.pcie_riser_ex_cost }}{% endif %} </td>
+                <td>{% if  s.pcie_riser_msrp %}{{ s.pcie_riser_msrp }}{% endif %} </td>
+                <td>{% if  s.pcie_riser_ex_msrp %}{{ s.pcie_riser_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is DVD-ROM sections -->
+            <tr>
+                <td>DVD-ROM</td>
+                <td>{% if  s.dvd_rom_qty %}{{ s.dvd_rom_qty }}{% endif %} </td>
+                <td>{% if  s.dvd_rom_part_number %}{{ s.dvd_rom_part_number }}{% endif %} </td>
+               <td>{% if  s.dvd_rom_nonfio_sku %}{{ s.dvd_rom_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.dvd_rom_desc %}{{ s.dvd_rom_desc }}{% endif %} </td>
+                <td>{% if  s.dvd_rom_cost %}{{ s.dvd_rom_cost }}{% endif %} </td>
+                <td>{% if  s.dvd_rom_ex_cost %}{{ s.dvd_rom_ex_cost }}{% endif %} </td>
+                <td>{% if  s.dvd_rom_msrp %}{{ s.dvd_rom_msrp }}{% endif %} </td>
+                <td>{% if  s.dvd_rom_ex_msrp %}{{ s.dvd_rom_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is iLO Advance sections -->
+            <tr>
+                <td>iLO Advance</td>
+                <td>{% if  s.ilo_advance_qty %}{{ s.ilo_advance_qty }}{% endif %} </td>
+                <td>{% if  s.ilo_advance_part_number %}{{ s.ilo_advance_part_number }}{% endif %} </td>
+               <td>{% if  s.ilo_advance_nonfio_sku %}{{ s.ilo_advance_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.ilo_advance_desc %}{{ s.ilo_advance_desc }}{% endif %} </td>
+                <td>{% if  s.ilo_advance_cost %}{{ s.ilo_advance_cost }}{% endif %} </td>
+                <td>{% if  s.ilo_advance_ex_cost %}{{ s.ilo_advance_ex_cost }}{% endif %} </td>
+                <td>{% if  s.ilo_advance_msrp %}{{ s.ilo_advance_msrp }}{% endif %} </td>
+                <td>{% if  s.ilo_advance_ex_msrp %}{{ s.ilo_advance_ex_msrp }}{% endif %} </td>
+            </tr>
+            
+            <!-- this is Option 1 sections -->
+            {% if s.op1_item_name %}
+            <tr>
+                <td>{% if  s.op1_item_name %}{{ s.op1_item_name }}{% endif %}</td>
+                <td>{% if  s.op1_qty %}{{ s.op1_qty }}{% endif %} </td>
+                <td>{% if  s.op1_part_number %}{{ s.op1_part_number }}{% endif %} </td>
+               <td>{% if  s.op1_nonfio_sku %}{{ s.op1_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.op1_desc %}{{ s.op1_desc }}{% endif %} </td>
+                <td>{% if  s.op1_cost %}{{ s.op1_cost }}{% endif %} </td>
+                <td>{% if  s.op1_ex_cost %}{{ s.op1_ex_cost }}{% endif %} </td>
+                <td>{% if  s.op1_msrp %}{{ s.op1_msrp }}{% endif %} </td>
+                <td>{% if  s.op1_ex_msrp %}{{ s.op1_ex_msrp }}{% endif %} </td>
+            </tr>
+            {% endif %}
+            
+            <!-- this is Option 2 sections -->
+             {% if s.op2_item_name %}
+            <tr>
+                <td>{% if  s.op2_item_name %}{{ s.op2_item_name }}{% endif %}</td>
+                <td>{% if  s.op2_qty %}{{ s.op2_qty }}{% endif %} </td>
+                <td>{% if  s.op2_part_number %}{{ s.op2_part_number }}{% endif %} </td>
+               <td>{% if  s.op2_nonfio_sku %}{{ s.op2_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.op2_desc %}{{ s.op2_desc }}{% endif %} </td>
+                <td>{% if  s.op2_cost %}{{ s.op2_cost }}{% endif %} </td>
+                <td>{% if  s.op2_ex_cost %}{{ s.op2_ex_cost }}{% endif %} </td>
+                <td>{% if  s.op2_msrp %}{{ s.op2_msrp }}{% endif %} </td>
+                <td>{% if  s.op2_ex_msrp %}{{ s.op2_ex_msrp }}{% endif %} </td>
+            </tr>
+            {% endif %}
+            
+            <!-- this is Option 3 sections -->
+             {% if s.op3_item_name %}
+            <tr>
+                <td>{% if  s.op3_item_name %}{{ s.op3_item_name }}{% endif %}</td>
+                <td>{% if  s.op3_qty %}{{ s.op3_qty }}{% endif %} </td>
+                <td>{% if  s.op3_part_number %}{{ s.op3_part_number }}{% endif %} </td>
+               <td>{% if  s.op3_nonfio_sku %}{{ s.op3_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.op3_desc %}{{ s.op3_desc }}{% endif %} </td>
+                <td>{% if  s.op3_cost %}{{ s.op3_cost }}{% endif %} </td>
+                <td>{% if  s.op3_ex_cost %}{{ s.op3_ex_cost }}{% endif %} </td>
+                <td>{% if  s.op3_msrp %}{{ s.op3_msrp }}{% endif %} </td>
+                <td>{% if  s.op3_ex_msrp %}{{ s.op3_ex_msrp }}{% endif %} </td>
+            </tr>
+             {% endif %}
+             
+            <!-- this is Option 4 sections -->
+             {% if s.op4_item_name %}
+            <tr>
+                <td>{% if  s.op4_item_name %}{{ s.op4_item_name }}{% endif %}</td>
+                <td>{% if  s.op4_qty %}{{ s.op4_qty }}{% endif %} </td>
+                <td>{% if  s.op4_part_number %}{{ s.op4_part_number }}{% endif %} </td>
+               <td>{% if  s.op4_nonfio_sku %}{{ s.op4_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.op4_desc %}{{ s.op4_desc }}{% endif %} </td>
+                <td>{% if  s.op4_cost %}{{ s.op4_cost }}{% endif %} </td>
+                <td>{% if  s.op4_ex_cost %}{{ s.op4_ex_cost }}{% endif %} </td>
+                <td>{% if  s.op4_msrp %}{{ s.op4_msrp }}{% endif %} </td>
+                <td>{% if  s.op4_ex_msrp %}{{ s.op4_ex_msrp }}{% endif %} </td>
+            </tr>
+             {% endif %}
+            
+            <!-- this is 5Option 5 sections -->
+             {% if s.op2_item_name %}
+            <tr>
+                <td>{% if  s.op5_item_name %}{{ s.op5_item_name }}{% endif %}</td>
+                <td>{% if  s.op5_qty %}{{ s.op5_qty }}{% endif %} </td>
+                <td>{% if  s.op5_part_number %}{{ s.op5_part_number }}{% endif %} </td>
+               <td>{% if  s.op5_nonfio_sku %}{{ s.op5_nonfio_sku }}{% endif %} </td>
+                <td>{% if  s.op5_desc %}{{ s.op5_desc }}{% endif %} </td>
+                <td>{% if  s.op5_cost %}{{ s.op5_cost }}{% endif %} </td>
+                <td>{% if  s.op5_ex_cost %}{{ s.op5_ex_cost }}{% endif %} </td>
+                <td>{% if  s.op5_msrp %}{{ s.op5_msrp }}{% endif %} </td>
+                <td>{% if  s.op5_ex_msrp %}{{ s.op5_ex_msrp }}{% endif %} </td>
+            </tr>
+             {% endif %}
+            
+            <tr>
+                <td colspan="7"></td>
+                 <td  style="text-align:right">
+                    <a href="javascript:void(0)" class="btn btn-primary part_num_flag" role="button" onclick="javascript: ajaxExportExcels('{{ s.pk }}');" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Export..." id="sgl_export_{{ s.pk }}" >Export to Excel</a>
+               </td>
+                <td style="text-align:right">
+                    <a href="{% url 'smartbuy_edit_id' pk=s.pk%}" class="btn btn-primary" role="button" value="{{ s.pk }}">Edit</a>
+               </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+	<p></p>
+	</table>
+	
+</div>
+
+<script type="text/javascript">
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+function ajaxExportExcels(pn_id){
+    if(pn_id == 'all'){
+        var post_url = '/smartbuy/exportall/';
+        location.replace(post_url);
+    }
+    else{
+        var post_url = '/smartbuy/export/';
+        location.replace(post_url + pn_id);
+    }
+
+    
+    // $.get(post_url, pn_id_str, function(data, textStatus){
+        // alert("done");
+    // });
+//      
+    // $.ajax({
+        // type: 'GET',
+        // url: post_url,
+        // data: {'pn_id': pn_id_str, 'format': 'excel'},
+        // beforeSend: function(xhr, settings){
+            // var csrftoken = Cookies.get('csrftoken');
+            // if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                // xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            // }
+            // if(pn_id){
+                // $('#sgl_export_' + pn_id).button('loading');
+            // }
+            // else{
+                // $('#export_all_excel_a').button('loading');
+            // }
+        // },
+        // success: function(){
+             // if(pn_id){
+                // $('#sgl_export_' + pn_id).button('reset');
+            // }
+            // else{
+                // $('#export_all_excel_a').button('reset');
+            // }
+            // alert('success');
+        // }
+    // });
+}  
+
+</script>
+{% endblock content %}

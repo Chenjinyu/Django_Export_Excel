@@ -1,0 +1,79 @@
+/**
+ author: Chen Jinyu
+ email: jinyuc@fireracker.com
+ date: JUN 30 2016
+ */
+
+
+#err_msg {
+	color: red;
+
+}
+
+.form_header {
+	margin-bottom:50px; 
+	width:auto; 
+	height: 20px; 
+	background-color: #2788b1;
+}
+
+.btn_usr {
+	margin-right:10px;
+}
+
+.lbl_usr{
+	color: red; 
+	font-size:13px; 
+	margin-bottom:40px;
+}
+
+.errorlist {
+	color: red;
+	list-style:none;
+	font-weight: bold;
+}
+
+.list_usr{
+	background-color: white;
+}
+
+.bootbox-body{
+	font-size:24px;
+	font-weight:bold;
+	margin:10px;
+}
+
+.err_msg_lbl{
+	color: red; 
+	margin-bottom:20px;
+}
+
+has-error {   
+    border-color: rgba(229, 103, 23, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6) !important;
+    outline: 0 none !important;
+}
+
+.usr_max_width{
+	max-width:700px;
+}
+
+#add_new_btn{
+        font-weight: 600;
+    font-size: 0.8em;
+    text-transform: uppercase;
+  color: white !important;
+  background-color: #00beaf;
+  border-color: #00beaf;
+  padding: 1.3em 1.6em 1.3em !important;
+  margin-top: 1em;
+  margin-left: 0 !important;
+}
+
+.input_num_width{
+    width: 50%;
+}
+
+.usr_def_tbl td{
+    padding: 0.75rem; 
+}

@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form method="POST" action="" enctype='multipart/form-data' id="br_form" onSubmit="javascript:return formVauleCheck();">{% csrf_token %}
+    <table class="table table-bordered">
+{{ form.non_field_errors }}
+        <thead class="thead-inverse">
+           <tr style="font-size:14px; text-align: center;">
+              <th> </th>
+              <th>Qty</th>
+              <th>Part Number</th>
+              <th>NonFIO SKU</th>
+              <th>Description</th>
+              <th>Cost</th>
+              <th>Ex.Cost</th>
+              <th>MSRP</th>
+              <th>ex.MSRP</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- this is SamrtBuy sections -->
+            <tr>
+                <td style="width:8%">demo</td>
+                <td style="width:5%">{{ form.demo_qty }}</td>
+                <td style="width:10%">{{ form.demo_part_number }}</td>
+                <td style="width:10%">{{ form.demo_nonfio_sku }}</td>
+                <td style="width:40%">{{ form.demo_desc }}</td>
+                <td style="width:8%">{{ form.demo_cost }}</td>
+                <td style="width:8%">{{ form.demo_ex_cost }}</td>
+                <td style="width:8%">{{ form.demo_msrp }}</td>
+                <td style="width:8%">{{ form.demo_ex_msrp }}</td>
+            </tr>
+            <tr>
+                <td colspan="4"> </td>
+                <td colspan="3"> <label id='br_err_msg_lbl_id' class="err_msg_lbl" style="font-size:16px; margin:20px 50px;"></label>  </td>
+                 <td>
+                   {% if type == 'edit' %}
+                  <input type='submit' class='btn btn-primary btn_usr' value='Update' id="br_next_btn"/>
+                  {% endif %}
+                  {% if type == 'add' %}
+                  <input type='submit' class='btn btn-primary btn_usr' value='Submit' id="br_next_btn"/>
+                  {% endif %}
+               </td>
+                <td>
+                    <input type='button' class='btn btn-default btn_usr' value='Cancel' id='edit_cnl_btn'/>
+               </td>
+            </tr>
+        </tbody>
+
+    </table>
+          
+</form>
+
+
+<script type="text/javascript">
+
+function formVauleCheck(){
+    
+    if(!necessnaryCheck('demo')) return false;
+    if(!fieldPriceCheck('id_demo_cost', 'demo Cost')) return false;
+    if(!fieldPriceCheck('id_demo_ex_cost', 'demo Ex.Cost')) return false;
+    if(!fieldPriceCheck('id_demo_msrp', 'demo MSRP')) return false;
+    if(!fieldPriceCheck('id_demo_ex_msrp', 'demo ex.MSRP')) return false;
+    
+	return true;
+}
+
+
+function fieldPriceCheck(input_str, input_lbl){
+    if($('#' + input_str).val()){
+        if (!checkPrice($('#' + input_str).val())){
+            $('#' + input_str).css({'border': '1px solid red'});
+            $('#br_err_msg_lbl_id').html(input_lbl + "Price is not valid, such like: 123.45. or 123");
+            return false;
+        }
+    }
+    $('#' + input_str).css({'border': ''});
+    $('#br_err_msg_lbl_id').html('');
+    return true;
+}
+
+
+function checkPrice(num){
+    if(checkPricewithDot(num) || checkNum(num)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function checkPricewithDot(num){
+    var regex  = /^[0-9]+(.[0-9]{2})?$/;
+    if (regex.test(num)){
+        return true;
+    }
+    return false;
+}
+
+function checkNum(num){
+    var regex = /^\d+$/;
+    if (regex.test(num)){
+        return true;
+    }
+    return false;
+}
+
+function necessnaryCheck(type){
+
+    if(type == 'demo')
+    {
+        if((!$('#id_' + type + '_part_number').val() && !$('#id_' + type + '_desc').val()) 
+            || ($('#id_' + type + '_part_number').val() && $('#id_' + type + '_desc').val()))
+            {
+               $('#id_' + type + '_part_number').css({'border': ''});
+               $('#id_' + type + '_desc').css({'border': ''});
+               $('#br_err_msg_lbl_id').html('');
+            }
+           else{
+               $('#id_' + type + '_part_number').css({'border': '1px solid red'});
+               $('#id_' + type + '_desc').css({'border': '1px solid red'});
+               $('#br_err_msg_lbl_id').html("For the item of "+ type + " :once one of [Part Number, Decrption] has value, otherelse should be inputed");
+                return false;
+           }
+    }
+    else{
+        if((!$('#id_' + type + '_part_number').val() && !$('#id_' + type + '_qty').val() && !$('#id_' + type + '_desc').val()) 
+                || ($('#id_' + type + '_part_number').val() && $('#id_' + type + '_qty').val() && $('#id_' + type + '_desc').val())) 
+            {
+               $('#id_' + type + '_part_number').css({'border': ''});
+               $('#id_' + type + '_qty').css({'border': ''});
+               $('#id_' + type + '_desc').css({'border': ''});
+               $('#br_err_msg_lbl_id').html('');
+            }
+           else{
+                $('#id_' + type + '_part_number').css({'border': '1px solid red'});
+                $('#id_' + type + '_qty').css({'border': '1px solid red'});
+                $('#id_' + type + '_desc').css({'border': '1px solid red'});
+                $('#br_err_msg_lbl_id').html("For the item of "+ type + " :once one of [Qty, Part Number, Decrption] has value, otherelse should be inputed.");
+                return false;
+           }
+    }
+    
+    return true;
+  
+}
+
+// function itemNameEmptyCheck(input_id)
+// {
+    // if($('#' + input_id))
+        // if($('#' + input_id).val())
+// }
+
+</script>
+
+{% endblock content %}
