@@ -5,7 +5,7 @@
     <br/>
     
     <form method="POST" action="{% url 'demo_details' %}" enctype='multipart/form-data' onSubmit="javascript: return part_num_check();">{% csrf_token %}
-        <label for="Part Number">You can input the <b>Part Number</b> here, for multiple part number with comma, like 777338-S01,800078-S01,...</label>
+        <label for="Part Number">You can input the <b>Part Number</b> here, ...</label>
         <input class="form-control input-lg usr_max_width" type="text" name="id_part_num" value="" id="id_part_num">
         <label id='trace_err_msg_lbl_id' class="err_msg_lbl" style=""></label><br/>
         <input type='submit' class='btn btn-primary btn_usr' value='Search' />
@@ -17,8 +17,8 @@
     <hr/>   
 
     <div>
-	{% if smarybuy_list %}
-        {% for obj in smarybuy_list %}
+	{% if demo_list %}
+        {% for obj in demo_list %}
         <a href="{% url 'demo_detail_id' pk=obj.pk%}" class="btn btn-info" role="button" style="color: white !important;">{{ obj.demo_part_number }}</a>
         {% endfor %}
 	{% endif %}
