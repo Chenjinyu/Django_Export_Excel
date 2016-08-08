@@ -4,6 +4,7 @@ This is a pretty simple example which tells us how to add/modify data into datab
 and export one or multi data from database to Excel file.
 
 how to install(below steps runs on windows):
+
 1. Download Python 3.5 from official website. it will help us install like pip, easy_install, etc.
 
 2. pip install virtualenv to install virtualenv tool which is very useful for multi django projects on your local develpment computer.
