@@ -1,6 +1,6 @@
 /*
  author: Chen Jinyu
- email: jinyuc@fireracker.com
+ email: jinyu2010.chen@gmail.com
  date: 06/30/2016
  */
 var weburl = this.location.href.match(/http:\/\/([a-zA-Z0-9-_\.]+\/)+/gi);
